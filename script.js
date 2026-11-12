@@ -19,3 +19,10 @@ $("waFloat").href="https://wa.me/"+NUM+"?text="+encodeURIComponent("Hello Somwar
 const topBtn=$("toTop");
 addEventListener("scroll",()=>topBtn.classList.toggle("show",scrollY>400),{passive:true});
 topBtn.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+
+// mobile menu
+const burger=$("burger"),menu=document.querySelector("header nav");
+function setMenu(o){menu.classList.toggle("open",o);burger.setAttribute("aria-expanded",o);burger.innerHTML=o?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>'}
+burger.onclick=()=>setMenu(!menu.classList.contains("open"));
+menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+addEventListener("resize",()=>{if(innerWidth>900)setMenu(false)});
